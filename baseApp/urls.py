@@ -1,8 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 from . import views
+from django.contrib import admin
 
-app_name = 'baseApp'
-urlpatterns = [
-    path('', views.getCars , name='getCars'),
-    path('<int:car_id>/', views.getCar, name='getCar'),
- ]
+router = routers.DefaultRouter()
+
+urlpatterns = router.urls
+
+urlpatterns += [
+    path('cars/', views.GetCarViewSet.as_view())
+]
