@@ -10,3 +10,6 @@ media
 migrations
 baseApp/__pycache__
 mysite/__pycache__
+
+#React
+node_modules
