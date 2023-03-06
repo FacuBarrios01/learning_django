@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer component {
+  th {
+    @apply text-center py-2 px-px;
+  }
+
+  td {
+    @apply text-center py-4 px-px;
+  }
+}

@@ -1,27 +1,14 @@
-import { useState, useEffect } from "react";
-import CarItem from "../components/CarItem";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CarList from "../components/CarList";
+import CarDetails from "./CarDetails";
 function App() {
-  const [cars, setCars] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/cars/");
-      const data = await response.json();
-      console.log(data);
-      setCars(data);
-    };
-
-    fetchData().catch(console.error);
-  }, []);
-
   return (
-    <div className=" bg-zinc-500 w-auto h-screen flex justify-center">
-      <div className="bg-stone-700 w-3/4 p-4 my-8 rounded-lg flex flex-col drop-shadow-2xl overflow-auto">
-        {cars.data?.map((car, index) => {
-          return <CarItem key={index} car={car} />;
-        })}
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<CarList />} />
+        <Route path="cardetails/:id" element={<CarDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
