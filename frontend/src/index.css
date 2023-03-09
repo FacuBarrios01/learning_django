@@ -10,4 +10,21 @@
   td {
     @apply text-center py-4 px-px;
   }
+  *::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(207, 206, 206, 0) !important;
+  }
+  *::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #292a2c;
+    border-radius: 20px;
+    border: 0.1px solid rgba(255, 255, 255, 0.267);
+    outline: white;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2d2d2e rgba(207, 206, 206, 0.219) !important;
+  }
 }
