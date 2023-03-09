@@ -1,23 +1,9 @@
 import { ArrowUturnLeftIcon, TrashIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-function CarDetails(props) {
-  const [car, setCar] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`/cars/`);
-      const data = await response.json();
-      let carMatch;
-      data.data.map((car) => {
-        if (car.id == props.car) carMatch = car;
-      });
-      setCar(carMatch);
-    };
-    fetchData().catch(console.error);
-  }, []);
+import { useAtomValue } from "jotai";
+import { focusedCarAtom } from "../jotai/atoms";
+function CarDetails({ deleteFunction, goHomeView }) {
+  const car = useAtomValue(focusedCarAtom);
 
   return (
     <div>
@@ -49,11 +35,8 @@ function CarDetails(props) {
         <h3 className="font-bold">Observations</h3>
         <p className="p-4">{car.observations || "-"}</p>
         <div className="flex">
-          <button onClick={() => props.detailFunction(null)}>
-            <ArrowUturnLeftIcon className="w-4 h-4"></ArrowUturnLeftIcon>
-          </button>
           <div className="flex-auto flex justify-end">
-            <button onClick={() => props.deleteFunction(car.id)}>
+            <button onClick={() => deleteFunction(car.id)}>
               <TrashIcon className="w-4 h-4"></TrashIcon>
             </button>
           </div>
